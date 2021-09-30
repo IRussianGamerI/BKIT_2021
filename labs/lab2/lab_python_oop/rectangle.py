@@ -1,6 +1,7 @@
 from lab_python_oop.figure import Figure
 from lab_python_oop.color import FigureColor
-from matplotlib import patches
+from matplotlib import patches, pyplot as plt
+
 
 class Rectangle(Figure):
     __type__ = "Прямоугольник"
@@ -19,7 +20,7 @@ class Rectangle(Figure):
         return self.width * self.height
 
     def __repr__(self):
-        return '{} {} цвета шириной {} и высотой {} площадью {}.'.format(
+        return '{} цвета {} шириной {} и высотой {} площадью {}.'.format(
             Rectangle.get_type(),
             self.color.colorproperty,
             self.width,
@@ -28,4 +29,11 @@ class Rectangle(Figure):
         )
 
     def draw(self):
-        patches.Rectangle((0, 0), self.width, self.height, color=self.color.colorproperty)
+        fig, ax = plt.subplots()
+        ax.plot([1, 1, 1], [1, 1, 1], color="cyan")
+        ax.add_patch(patches.Rectangle((0, 0), self.width, self.height, color=self.color.colorproperty))
+        plt.xlabel("X-AXIS")
+        plt.ylabel("Y-AXIS")
+        plt.title("PLOT-RECT")
+        plt.show()
+
