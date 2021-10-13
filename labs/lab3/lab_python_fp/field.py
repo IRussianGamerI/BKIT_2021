@@ -9,11 +9,10 @@
 def field(items, *args):
     assert len(args) > 0
     # Необходимо реализовать генератор
+    res = []
     if len(args) == 1:
-        res = []
         for item in items:
-            try:
-                res.append(item[args[0]])
-            except:
-                continue
-        return res
+            yield item[args[0]]
+    else:
+        for item in items:
+            yield {args[i]: item[args[i]] for i in range(len(args))}
