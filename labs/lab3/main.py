@@ -22,8 +22,9 @@ def main2():
 
 def main3():
     data = ["A", "B", "a", "b"]
-    for i in Unique(data, ignore_case=False):
-        print(i)
+    while True:
+        for i in Unique(gen_random(5, 1, 2)):
+            print(i)
 
 
 if __name__ == "__main__":
