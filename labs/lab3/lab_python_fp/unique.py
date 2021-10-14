@@ -5,6 +5,7 @@ class Unique(object):
         self.index = 0
         self.used = set()
         self.ignore_case = kwargs.get("ignore_case", False)
+        self.lower_set = set()
         # Нужно реализовать конструктор
         # В качестве ключевого аргумента, конструктор должен принимать bool-параметр ignore_case,
         # в зависимости от значения которого будут считаться одинаковыми строки в разном регистре
@@ -16,7 +17,24 @@ class Unique(object):
         # Нужно реализовать __next__
         current = None
         while True:
-            try:
+            if isinstance(self.items, list):
+                if self.index >= len(self.items):
+                    raise StopIteration
+                else:
+                    current = self.items[self.index]
+                    self.index += 1
+            else:
+                current = next(self.items)
+
+            if not self.ignore_case and current not in self.used:
+                self.used.add(current)
+                return current
+            elif self.ignore_case and isinstance(current, str):
+                if current.lower() not in self.lower_set:
+                    self.used.add(current)
+                    self.lower_set.add(current.lower())
+                    return current
+            """try:
                 current = next(self.items)
             except TypeError:
                 if self.index >= len(self.items):
@@ -33,7 +51,7 @@ class Unique(object):
                             self.used.add(current)
                     else:
                         self.used.add(current)
-                    return current
+                    return current"""
 
     def __iter__(self):
         return self
