@@ -1,4 +1,4 @@
-from time import time
+from time import time, sleep
 from contextlib import contextmanager
 
 
@@ -19,3 +19,10 @@ def cm_timer_2():
     start_time = time()
     yield
     print("time:", time() - start_time)
+
+
+if __name__ == "__main__":
+    with cm_timer_1():
+        sleep(5.5)
+    with cm_timer_2():
+        sleep(5.5)

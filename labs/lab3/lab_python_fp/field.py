@@ -15,3 +15,14 @@ def field(items, *args):
     else:
         for item in items:
             yield {args[i]: item[args[i]] for i in range(len(args))}
+
+
+if __name__ == '__main__':
+    goods = [
+        {'title': 'Ковер', 'price': 2000, 'color': 'green'},
+        {'title': 'Диван для отдыха', 'price': 5300, 'color': 'black'}
+    ]
+
+    gen_res = field(goods, 'title', 'price')
+    for item in gen_res:
+        print(item)

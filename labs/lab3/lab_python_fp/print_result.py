@@ -1,8 +1,11 @@
 # Здесь должна быть реализация декоратора
 def print_result(func):
-    def decorated_func():
+    def decorated_func(arg=None):
         print(func.__name__)
-        res = func()
+        if arg:
+            res = func(arg)
+        else:
+            res = func()
         if isinstance(res, list):
             for item in res:
                 print(item)
@@ -12,6 +15,7 @@ def print_result(func):
         else:
             print(res)
         return res
+
     return decorated_func
 
 
@@ -33,3 +37,11 @@ def test_3():
 @print_result
 def test_4():
     return [1, 2]
+
+
+if __name__ == "__main__":
+    print('!!!!!!!!')
+    test_1()
+    test_2()
+    test_3()
+    test_4()

@@ -34,24 +34,12 @@ class Unique(object):
                     self.used.add(current)
                     self.lower_set.add(current.lower())
                     return current
-            """try:
-                current = next(self.items)
-            except TypeError:
-                if self.index >= len(self.items):
-                    raise StopIteration
-                else:
-                    current = self.items[self.index]
-                    self.index += 1
-            finally:
-                if current not in self.used:
-                    if not self.ignore_case:
-                        try:
-                            self.used.add(current.lower())
-                        except:
-                            self.used.add(current)
-                    else:
-                        self.used.add(current)
-                    return current"""
 
     def __iter__(self):
         return self
+
+
+if __name__ == "__main__":
+    data = ["A", "B", "a", "b"]
+    for i in Unique(data, ignore_case=True):
+        print(i)
