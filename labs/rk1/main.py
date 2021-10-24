@@ -88,15 +88,8 @@ def main():
     print('Задание Г1')
     res1 = {}
     # Перебираем все группы
-    for g in groups:
-        if 'А' == g.name[0]:
-            # Список студентов группы
-            g_studs = list(filter(lambda i: i[2] == g.name, many_to_many))
-            # Только ФИО студентов
-            g_studs_names = [x for x, _, _ in g_studs]
-            # Добавляем результат в словарь
-            # ключ - группа, значение - список фамилий
-            res1[g.name] = g_studs_names
+    res1 = {g.name: [x for x, _, _ in list(filter(lambda i: i[2] == g.name, one_to_many))] for g in groups if
+            'А' == g.name[0]}
     print(res1)
 
     print('\nЗадание Г2')
