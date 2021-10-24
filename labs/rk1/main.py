@@ -87,30 +87,31 @@ def main():
 
     print('Задание Г1')
     res1 = {}
-    # Перебираем все отделы
+    # Перебираем все группы
     for g in groups:
         if 'А' == g.name[0]:
-            # Список сотрудников отдела
+            # Список студентов группы
             g_studs = list(filter(lambda i: i[2] == g.name, many_to_many))
-            # Только ФИО сотрудников
+            # Только ФИО студентов
             g_studs_names = [x for x, _, _ in g_studs]
             # Добавляем результат в словарь
-            # ключ - отдел, значение - список фамилий
+            # ключ - группа, значение - список фамилий
             res1[g.name] = g_studs_names
     print(res1)
 
     print('\nЗадание Г2')
     res_2_unsorted = []
-    # Перебираем все отделы
+    # Перебираем все группы
     for g in groups:
-        # Список сотрудников отдела
+        # Список студентов группы
         g_studs = list(filter(lambda i: i[2] == g.name, one_to_many))
-        # Если отдел не пустой
+        # Если группа не пустая
         if len(g_studs) > 0:
+            # Считаем максимальные стипендии
             g_scholarship_max = max(g_studs, key=lambda x: x[1])[1]
             res_2_unsorted.append((g.name, g_scholarship_max))
 
-    # Сортировка по суммарной зарплате
+    # Сортировка по максимальной стипендии
     res_2 = sorted(res_2_unsorted, key=itemgetter(1), reverse=True)
     print(res_2)
 
