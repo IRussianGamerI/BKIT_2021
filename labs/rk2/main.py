@@ -62,7 +62,6 @@ def connect_many_to_many():
 
 
 def solveTask1(one_to_many):
-    print('Задание Г1')
     res1 = {}
     # Перебираем все группы
     res1 = {g.name: [x for x, _, _ in list(filter(lambda i: i[2] == g.name, one_to_many))] for g in groups if
@@ -71,7 +70,6 @@ def solveTask1(one_to_many):
 
 
 def solveTask2(one_to_many):
-    print('\nЗадание Г2')
     res_2_unsorted = []
     # Перебираем все группы
     for g in groups:
@@ -89,7 +87,6 @@ def solveTask2(one_to_many):
 
 
 def solveTask3(many_to_many):
-    print('\nЗадание Г3')
     res_3 = sorted(many_to_many, key=itemgetter(2))
     return res_3
 
