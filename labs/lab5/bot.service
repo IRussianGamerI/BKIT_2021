@@ -5,7 +5,7 @@ Description=Bot service
 [Service]
 Type=simple
 Restart=always
-ExecStart=/usr/bin/python3 /home/ubuntu/bot1/code/chatbots/aiogram_iu5_bkit_button_bot/bot.py
+ExecStart=/usr/bin/python3 /home/levus/PycharmProjects/BKIT_2021/labs/lab5/bot.py
 
 [Install]
 WantedBy=multi-user.target

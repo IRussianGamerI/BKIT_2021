@@ -1,41 +1,39 @@
 import os
+import random
 from aiogram import Bot, Dispatcher, executor, types
 
 # Имя бота для поиска в Telegram: aiogram_iu5_34b_levbara_button_bot
 
-# Токент бота
+# Токен бота
 TOKEN = '5057157373:AAFNnDAHpzbf_oSEwzEs7qJXJrIoiM5JKSw'
 
-# Сообщения
-mes_emblem = 'Эмблемка'
-mes_photo = 'Фотка'
+mes_phys = 'Физика'
+mes_prob = 'ТВиМС'
 
-# Путь к текущему каталогу
 cur_path = os.path.dirname(os.path.abspath(__file__))
 
-# Объект бота
 bot = Bot(token=TOKEN)
-# Диспетчер для бота
+
 dp = Dispatcher(bot)
 
 
 @dp.message_handler()
 async def answer_all(message: types.Message):
-    # Текст, введенный пользователем, то есть текст с кнопки
     text = message.text
 
-    # Проверка сообщения и вывод данных
-    if text == mes_emblem:
-        img = open(os.path.join(cur_path, 'img', 'emblem.jpg'), 'rb')
-        await bot.send_photo(message.from_user.id, img)
-    elif text == mes_photo:
-        img = open(os.path.join(cur_path, 'img', 'photo.jpg'), 'rb')
-        await bot.send_photo(message.from_user.id, img)
+    if text == mes_phys:
+        num = random.randint(1, 5)
+        img = open(os.path.join(cur_path, 'img', 'phys' + str(num) + '.jpg'), 'rb')
+        await bot.send_photo(message.from_user.id, img, "Учи физику")
+    elif text == mes_prob:
+        num = random.randint(1, 5)
+        img = open(os.path.join(cur_path, 'img', 'prob' + str(num) + '.png'), 'rb')
+        await bot.send_photo(message.from_user.id, img, "Учи тервер")
     else:
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        buttons = [mes_emblem, mes_photo]
+        buttons = [mes_phys, mes_prob]
         keyboard.add(*buttons)
-        await message.answer('Пожалуйста, нажмите кнопку', reply_markup=keyboard)
+        await message.answer('Нажми кнопочку. Экзамены на носу. Давай!', reply_markup=keyboard)
 
 
 if __name__ == "__main__":
