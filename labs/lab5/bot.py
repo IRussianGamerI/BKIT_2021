@@ -20,7 +20,7 @@ dp = Dispatcher(bot)
 @dp.message_handler()
 async def answer_all(message: types.Message):
     text = message.text
-
+    print(message.from_user.id)
     if text == mes_phys:
         num = random.randint(1, 5)
         img = open(os.path.join(cur_path, 'img', 'phys' + str(num) + '.jpg'), 'rb')
