@@ -1,6 +1,7 @@
 import unittest
 import main
 
+
 class TestBisquare(unittest.TestCase):
     def test_discriminant(self):
         self.assertEqual(main.discriminant(1, 2, 1), 0)
@@ -17,3 +18,7 @@ class TestBisquare(unittest.TestCase):
     def test_solve_bisquare(self):
         self.assertEqual(main.solve_bisquare(1, 4, 3), set())
         self.assertEqual(main.solve_bisquare(1, -4, 0), {0, 2, -2})
+
+
+if __name__ == '__main__':
+    unittest.main()
